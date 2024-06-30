@@ -45,7 +45,7 @@ const Body = () => {
 
   // conditional rendering
   // if (restaurantList.length === 0)
-  return !restaurantList.length ? (
+  return !restaurantList?.length ? (
     <Shimmer />
   ) : (
     <div className="body">
