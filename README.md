@@ -59,4 +59,19 @@ Two types of import/ export
 
     - Normal JavaScript utility functions
     - useState() - Super powerful state variables.
-    - useEffect() - 
+    - useEffect() -
+
+# useState
+
+    - Never use useState outside the component
+    - It is used to create local state variables inside the functional component
+    - Try to call hooks on the top
+    - Never use useState inside the if/else statements
+    - Never use useState inside the for loops
+    - Never use useState inside the functions
+
+# useEffect
+
+    - If no dependency array => useEffect is called on every render
+    - If dependency array is empty - [] => useEffect is called on initial render(just once)
+    - If dependency array is [state] => useEffect is called everytime state is updated.  
