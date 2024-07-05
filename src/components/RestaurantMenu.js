@@ -1,44 +1,61 @@
 import { useEffect, useState } from "react";
+import { useParams } from "react-router-dom";
 import Shimmer from "./Shimmer";
+import { MENU_API } from "../utils/constants";
 
 const RestaurantMenu = () => {
-  const [resInfo, setResInfo] = useState(null);
-  useEffect(() => {
-    fetchMenu();
-  }, []);
+	const [resInfo, setResInfo] = useState(null);
+	const {resId} = useParams();
+	console.log('resId', resId);
+	useEffect(() => {
+		fetchMenu();
+	}, []);
 
-  const fetchMenu = async () => {
-    try {
-      const data = await fetch(
-        "https://www.swiggy.com/dapi/menu/pl?page-type=REGULAR_MENU&complete-menu=true&lat=12.89960&lng=80.22090&restaurantId=558083&catalog_qa=undefined&submitAction=ENTER"
-      );
-      const json = await data.json();
-      setResInfo(json);
-      console.log("json", json);
-    } catch (err) {
-      console.error(`Error while fetching menu ${err}`);
-      throw err;
-    }
-  };
+	const fetchMenu = async () => {
+		try {
+			const data = await fetch(`${MENU_API}${resId}`);
+			const json = await data.json();
+			setResInfo(json);
+			console.log("json", json);
+		} catch (err) {
+			console.error(`Error while fetching menu ${err}`);
+			throw err;
+		}
+	};
 
-  // const {cuisines} = resInfo.data.cards[2].card.card.info;
+	// if (resInfo === null)
+	if (!resInfo) return <Shimmer />;
 
-  // if (resInfo === null)
-  return !resInfo ? (
-    <Shimmer />
-  ) : (
-    <div className="menu">
-      <h1>{resInfo?.data?.cards[2]?.card?.card?.info?.name}</h1>
-      <h3>{resInfo.data.cards[2].card.card.info.cuisines.join(", ")}</h3>
-      <h3>{resInfo.data.cards[2].card.card.info.costForTwoMessage}</h3>
-      <h2>Menu</h2>
-      <ul>
-        <li>Biryani</li>
-        <li>Burgers</li>
-        <li>Diet Coke</li>
-      </ul>
-    </div>
-  );
+	const { name, cuisines, costForTwoMessage } =
+		resInfo?.data?.cards[2]?.card?.card?.info || {};
+
+	// console.log('name', name, 'cuisines', cuisines, 'costForTwoMessage', costForTwoMessage);
+
+	const { itemCards } =
+		resInfo?.data?.cards[4]?.groupedCard?.cardGroupMap?.REGULAR?.cards[2]?.card
+			?.card || {};
+	console.log("itemCards", itemCards);
+
+	return (
+		<div className="menu">
+			<h1>{name}</h1>
+			<p>
+				{cuisines.join(", ")} - {costForTwoMessage}
+			</p>
+			<h2>Menu</h2>
+			<ul>
+				{itemCards.map((itemCard) => (
+					<li key={itemCard.card.info.id}>
+						{console.log('itemCard', itemCard)}
+						{itemCard.card.info.name} - {"Rs."} {itemCard.card.info.price / 100}
+					</li>
+				))}
+				{/* <li>{itemCards[0].card.info.name}</li>
+				<li>{itemCards[1].card.info.name}</li>
+				<li>{itemCards[2].card.info.name}</li> */}
+			</ul>
+		</div>
+	);
 };
 
 export default RestaurantMenu;
