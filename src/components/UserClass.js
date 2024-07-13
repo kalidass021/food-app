@@ -28,8 +28,19 @@ class UserClass extends React.Component {
 
   }
 
-  componentDidUpdate() {
+  componentDidUpdate(prevProps, prevState) {
     console.log('componentDidUpdate called');
+    if (this.state.count !== prevState.count) {
+      // code
+    }
+
+    if (this.state.count2 !== prevState.count2) {
+      // code
+    }
+  }
+
+  componentWillUnmount() {
+    console.log('componentWillUnmount is  called');
   }
 
   render() {
