@@ -50,9 +50,10 @@ const Body = () => {
 
   // if onlineStatus === false
   if (!onlineStatus) {
-    return <h1>Looks like you're offline!! Please check your internet connection</h1>;
+    return (
+      <h1>Looks like you're offline!! Please check your internet connection</h1>
+    );
   }
-
 
   // conditional rendering
   // if (restaurantList.length === 0)
@@ -60,11 +61,11 @@ const Body = () => {
     <Shimmer />
   ) : (
     <div className="body">
-      <div className="filter">
-        <div className="search">
+      <div className="flex">
+        <div className="m-4 p-4">
           <input
             type="text"
-            className="search-box"
+            className="border border-solid border-black"
             value={searchText}
             onChange={(event) => {
               setSearchText(event.target.value);
@@ -72,6 +73,7 @@ const Body = () => {
           />
           {/* biome-ignore lint/a11y/useButtonType: <explanation> */}
           <button
+            className="px-4 py-2 m-4 bg-green-100 rounded-lg"
             onClick={() => {
               // Filter the res and update the UI
               // search text
@@ -88,9 +90,11 @@ const Body = () => {
           </button>
         </div>
         {/* biome-ignore lint/a11y/useButtonType: <explanation> */}
-        <button className="filter-btn" onClick={filterBtnClick}>
-          Top rated Restaurants
-        </button>
+        <div className="m-4 p-4 flex items-center">
+          <button className="px-4 py-2 bg-blue-100 rounded-lg" onClick={filterBtnClick}>
+            Top rated Restaurants
+          </button>
+        </div>
       </div>
       <div className="res-container">
         {filteredRestaurant?.map((restaurant) => (
