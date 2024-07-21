@@ -8,7 +8,9 @@ const Header = () => {
   // get online status from the custom hook
   const onlineStatus = useOnlineStatus();
   return (
-    <div className="flex justify-between bg-pink-100 shadow-md">
+    // if device size is greater than sm then bg-yellow-50
+    // if device size is greater than lg then bg-green-50
+    <div className="flex justify-between bg-pink-100 shadow-md sm:bg-yellow-50 lg:bg-green-50">
       <div className="logo-container">
         <img className="w-32" src={LOGO_URL} />
       </div>

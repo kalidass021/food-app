@@ -96,7 +96,7 @@ const Body = () => {
           </button>
         </div>
       </div>
-      <div className="res-container">
+      <div className="m-5 flex flex-wrap justify-between">
         {filteredRestaurant?.map((restaurant) => (
           <Link
             key={restaurant.info.id}
