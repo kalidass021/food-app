@@ -1,6 +1,6 @@
 import { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
-import RestaurantCard from "./RestaurantCard";
+import RestaurantCard, { withSpeedyLabel } from "./RestaurantCard";
 // import resList from "../utils/mockData";
 import Shimmer from "./Shimmer";
 import useOnlineStatus from "../utils/useOnlineStatus";
@@ -11,8 +11,12 @@ const Body = () => {
 
   const [searchText, setSearchText] = useState("");
 
+  const RestaurantCardSpeedy = withSpeedyLabel(RestaurantCard);
+
   // get online status from custom hook
   const onlineStatus = useOnlineStatus();
+
+  console.log("restaurantList", restaurantList);
 
   // console.log("Body rendered");
 
@@ -91,7 +95,10 @@ const Body = () => {
         </div>
         {/* biome-ignore lint/a11y/useButtonType: <explanation> */}
         <div className="m-4 p-4 flex items-center">
-          <button className="px-4 py-2 bg-blue-100 rounded-lg" onClick={filterBtnClick}>
+          <button
+            className="px-4 py-2 bg-blue-100 rounded-lg"
+            onClick={filterBtnClick}
+          >
             Top rated Restaurants
           </button>
         </div>
@@ -102,7 +109,21 @@ const Body = () => {
             key={restaurant.info.id}
             to={`restaurants/${restaurant.info.id}`}
           >
-            <RestaurantCard resData={restaurant} />
+            {/* if a delivery time is less than 30mins add speedy label*/}
+            {console.log(
+              "restaurant.info.sla.deliveryTime",
+              restaurant?.info?.sla?.deliveryTime <= 30
+            )}
+
+            {restaurant.info.sla.deliveryTime <= 30 ? (
+              <RestaurantCardSpeedy resData={restaurant} />
+            ) : (
+              <RestaurantCard resData={restaurant} />
+            )}
+
+            {/* {
+            restaurant.info.sla.deliveryTime < 26 ? <RestaurantCardSpeedy resData={restaurant} /> : <RestaurantCard resData={restaurant} />
+          } */}
           </Link>
         ))}
       </div>

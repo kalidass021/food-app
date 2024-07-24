@@ -21,4 +21,31 @@ const RestaurantCard = (props) => {
 };
 
 
+// higher order component
+// input RestaurantCard => output RestaurantCard with speedy label
+export const withSpeedyLabel = (RestaurantCard) => {
+  return (props) => {
+    return (
+      <div>
+        <label>Speedy</label>
+        <RestaurantCard {...props}/>
+      </div>
+    );
+  }
+}
+
+// export const withSpeedyLabel = (WrappedComponent) => {
+//   const SpeedyRestaurantCard = ({ resData }) => {
+//     return (
+//       <div>
+//         <label>Speedy</label>
+//         <WrappedComponent resData={resData} />
+//       </div>
+//     );
+//   };
+
+//   return SpeedyRestaurantCard;
+// };
+
+
 export default RestaurantCard;
