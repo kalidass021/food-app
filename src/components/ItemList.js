@@ -1,7 +1,5 @@
 import { CDN_URL } from "../utils/constants";
-
 const ItemList = ({ itemCards }) => {
-  console.log("itemCards", itemCards);
   return (
     <div>
       {itemCards.map((itemCard) => (
@@ -18,7 +16,9 @@ const ItemList = ({ itemCards }) => {
           </div>
           <div className="w-3/12 p-2">
             <div className="absolute">
-              <button className="p-3 mx-4 rounded-lg bg-gray-500 text-white shadow-lg">Add +</button>
+              <button className="p-1 px-2 mx-4 rounded-lg bg-black text-white shadow-lg">
+                Add +
+              </button>
             </div>
             <img src={`${CDN_URL}${itemCard.card.info.imageId}`} />
           </div>
