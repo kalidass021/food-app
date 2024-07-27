@@ -9,10 +9,10 @@ const ItemList = ({ itemCards }) => {
         >
           <div className="w-9/12">
             <div className="py-2">
-              <span>{itemCard.card.info.name}</span>
-              <span> - ₹ {itemCard.card.info.price / 100}</span>
+              <span>{itemCard?.card?.info?.name}</span>
+              <span> - ₹ {itemCard?.card?.info?.defaultPrice ? itemCard?.card?.info?.defaultPrice/100 : itemCard.card.info.price/100}</span>
             </div>
-            <span className="text-xs">{itemCard.card.info.description}</span>
+            <span className="text-xs">{itemCard?.card?.info?.description}</span>
           </div>
           <div className="w-3/12 p-2">
             <div className="absolute">

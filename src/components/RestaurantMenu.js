@@ -1,3 +1,4 @@
+import { useState } from "react";
 import { useParams } from "react-router-dom";
 import Shimmer from "./Shimmer";
 import RestaurantCategory from "./RestaurantCategory";
@@ -8,6 +9,10 @@ const RestaurantMenu = () => {
   const { resId } = useParams();
 
   const resInfo = useRestaurantMenu(resId);
+
+  // state to control expand and collapse of accordion in Restaurant category
+  // by default the first index is open
+  const [showIndex, setShowIndex] = useState(0);
 
   // if (resInfo === null)
   if (!resInfo) return <Shimmer />;
@@ -40,10 +45,13 @@ const RestaurantMenu = () => {
         {cuisines.join(", ")} - {costForTwoMessage}
       </p>
       {/* categories accordions */}
-      {categories.map((category) => (
+      {categories.map((category, index) => (
+        // Restaurant category is a controlled component
         <RestaurantCategory
           key={category.card.card.title}
           categoryData={category?.card?.card}
+          showItems={index === showIndex ? true : false}
+          setShowIndex={() => setShowIndex(index)}
         />
       ))}
     </div>

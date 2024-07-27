@@ -1,12 +1,20 @@
 import { LOGO_URL } from "../utils/constants";
-import { useState } from "react";
+// 2.1. Importing useContext hook and import the context (UserContext)
+import { useState, useContext } from "react";
 import { Link } from "react-router-dom";
 import useOnlineStatus from "../utils/useOnlineStatus";
+// importing the UserContext
+import UserContext from "../utils/UserContext";
 
 const Header = () => {
   const [btnName, setBtnName] = useState("Login");
   // get online status from the custom hook
   const onlineStatus = useOnlineStatus();
+
+  // 2.2. Get the data from the context
+  const {loggedInuser} = useContext(UserContext);
+
+  console.log('data', loggedInuser);
   return (
     // if device size is greater than sm then bg-yellow-50
     // if device size is greater than lg then bg-green-50
@@ -30,6 +38,8 @@ const Header = () => {
           >
             {btnName}
           </button>
+        {/* 2.3. Using the context data */}
+          <li>{loggedInuser}</li>
         </ul>
       </div>
     </div>

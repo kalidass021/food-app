@@ -1,11 +1,12 @@
 import { useState } from "react";
 import ItemList from "./ItemList";
-const RestaurantCategory = ({ categoryData }) => {
+const RestaurantCategory = ({ categoryData, showItems, setShowIndex }) => {
   const { title, itemCards } = categoryData;
   // logic to show and hide the accodion body
-  const [showItems, setShowItems] = useState(false);
-  const showAccodionBody = () => {
-    setShowItems(!showItems);
+  const showAccodionBody = (showItems) => {
+    setShowIndex();
+    console.log('showItems', showItems);
+    // showItems = !showItems;
   }
   return (
     <div>
@@ -15,7 +16,7 @@ const RestaurantCategory = ({ categoryData }) => {
           <span className="font-bold text-md">
             {title} ({itemCards.length})
           </span>
-          <span>⬇️</span>
+          <span>{showItems ? '⬆️' : '⬇'}</span>
         </div>
         {/* Accordion body */}
         {showItems && <ItemList itemCards={itemCards} />}
