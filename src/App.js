@@ -1,4 +1,4 @@
-import { lazy, Suspense } from "react";
+import { lazy, Suspense, useState, useEffect } from "react";
 import ReactDOM from "react-dom/client";
 import Header from "./components/Header";
 import Body from "./components/Body";
@@ -16,17 +16,33 @@ const Grocery = lazy(() => import("./components/Grocery"));
 // step3 - import RouterProvider
 import { createBrowserRouter, RouterProvider, Outlet } from "react-router-dom";
 
+// import user context
+import UserContext from "./utils/UserContext";
+
 // const styleCard = {
 //   backgroundColor: "#f0f0f0"
 // }
 
 const AppLayout = () => {
+  const [userName, setUserName] = useState();
+
+  // authentication
+  useEffect(() => {
+    // Make an API call and send username and password
+    const data = {
+      name: "Kalidass Boopathi",
+    };
+    setUserName(data.name);
+  }, []);
   return (
-    <div className="app">
-      <Header />
-      {/* render the component based on the path */}
-      <Outlet />
-    </div>
+    // providing data to parent component
+    <UserContext.Provider value={{loggedInuser: userName, setUserName}}>
+      <div className="app">
+        <Header />
+        {/* render the component based on the path */}
+        <Outlet />
+      </div>
+    </UserContext.Provider>
   );
 };
 

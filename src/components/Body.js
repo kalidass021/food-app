@@ -1,9 +1,10 @@
-import { useState, useEffect } from "react";
+import { useState, useEffect, useContext } from "react";
 import { Link } from "react-router-dom";
 import RestaurantCard, { withSpeedyLabel } from "./RestaurantCard";
 // import resList from "../utils/mockData";
 import Shimmer from "./Shimmer";
 import useOnlineStatus from "../utils/useOnlineStatus";
+import UserContext from "../utils/UserContext";
 
 const Body = () => {
   const [restaurantList, setRestaurantList] = useState([]);
@@ -12,6 +13,8 @@ const Body = () => {
   const [searchText, setSearchText] = useState("");
 
   const RestaurantCardSpeedy = withSpeedyLabel(RestaurantCard);
+  // import setUserName and required details from the context
+  const { loggedInuser, setUserName } = useContext(UserContext);
 
   // get online status from custom hook
   const onlineStatus = useOnlineStatus();
@@ -75,7 +78,6 @@ const Body = () => {
               setSearchText(event.target.value);
             }}
           />
-          {/* biome-ignore lint/a11y/useButtonType: <explanation> */}
           <button
             className="px-4 py-2 m-4 bg-green-100 rounded-lg"
             onClick={() => {
@@ -93,7 +95,6 @@ const Body = () => {
             Search
           </button>
         </div>
-        {/* biome-ignore lint/a11y/useButtonType: <explanation> */}
         <div className="m-4 p-4 flex items-center">
           <button
             className="px-4 py-2 bg-blue-100 rounded-lg"
@@ -101,6 +102,15 @@ const Body = () => {
           >
             Top rated Restaurants
           </button>
+        </div>
+        <div className="m-4 p-4 flex items-center">
+          {/* Using that function update data in the context */}
+          <label>Username </label>
+          <input
+            className="border border-black p-2"
+            value={loggedInuser}
+            onChange={(event) => setUserName(event.target.value)}
+          />
         </div>
       </div>
       <div className="m-5 flex flex-wrap justify-between">
