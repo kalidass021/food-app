@@ -10,6 +10,10 @@ import RestaurantMenu from "./components/RestaurantMenu";
 // lazy loading or chunking
 // the lazy function should return the import function
 const Grocery = lazy(() => import("./components/Grocery"));
+// redux
+// import Provider and store
+import { Provider } from "react-redux";
+import appStore from "./redux/appStore";
 
 // routing
 // step1 - import createBrowserRouter
@@ -35,14 +39,17 @@ const AppLayout = () => {
     setUserName(data.name);
   }, []);
   return (
-    // providing data to parent component
-    <UserContext.Provider value={{loggedInuser: userName, setUserName}}>
-      <div className="app">
-        <Header />
-        {/* render the component based on the path */}
-        <Outlet />
-      </div>
-    </UserContext.Provider>
+    // Step2. Providing the redux store to application
+    <Provider store={appStore}>
+      {/* providing data to parent component */}
+      <UserContext.Provider value={{ loggedInuser: userName, setUserName }}>
+        <div className="app">
+          <Header />
+          {/* render the component based on the path */}
+          <Outlet />
+        </div>
+      </UserContext.Provider>
+    </Provider>
   );
 };
 
