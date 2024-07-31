@@ -5,6 +5,7 @@ import { Link } from "react-router-dom";
 import useOnlineStatus from "../utils/useOnlineStatus";
 // importing the UserContext
 import UserContext from "../utils/UserContext";
+import { useSelector } from "react-redux";
 
 const Header = () => {
   const [btnName, setBtnName] = useState("Login");
@@ -13,6 +14,11 @@ const Header = () => {
 
   // 2.2. Get the data from the context
   const {loggedInuser} = useContext(UserContext);
+
+  // Read the data from the redux store
+  // Subscribing to the store using selector
+  // also we're mentioning which portion of the store needs to be accessed
+  const cartItems = useSelector((store) => store.cart.items);
 
   console.log('data', loggedInuser);
   return (
@@ -29,7 +35,7 @@ const Header = () => {
           <li className="px-4"><Link to="/about">About Us</Link></li>
           <li className="px-4"><Link to="/contact">Contact Us</Link></li>
           <li className="px-4"><Link to="/grocery">Grocery</Link></li>
-          <li>Cart</li>
+          <li className="px-4 font-bold">Cart: {cartItems.length} items</li>
           <button
             className="login-btn"
             onClick={() => {
@@ -39,7 +45,7 @@ const Header = () => {
             {btnName}
           </button>
         {/* 2.3. Using the context data */}
-          <li>{loggedInuser}</li>
+          <li className="px-4">{loggedInuser}</li>
         </ul>
       </div>
     </div>
