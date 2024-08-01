@@ -1,5 +1,21 @@
+// redux
+import { useDispatch } from "react-redux";
+import { addItem } from "../redux/slices/cartSlice";
 import { CDN_URL } from "../utils/constants";
 const ItemList = ({ itemCards }) => {
+  const dispatch = useDispatch();
+  const handleAddItem = (itemCard) => {
+    // dispatch an action
+    dispatch(addItem(itemCard));
+    /* 
+      Internally redux will create a object
+      {
+        payload: "pizza"
+      }
+
+      and assign this object to action (2nd argument to the reducer function)
+    */
+  }
   return (
     <div>
       {itemCards.map((itemCard) => (
@@ -10,13 +26,22 @@ const ItemList = ({ itemCards }) => {
           <div className="w-9/12">
             <div className="py-2">
               <span>{itemCard?.card?.info?.name}</span>
-              <span> - ₹ {itemCard?.card?.info?.defaultPrice ? itemCard?.card?.info?.defaultPrice/100 : itemCard.card.info.price/100}</span>
+              <span>
+                {" "}
+                - ₹{" "}
+                {itemCard?.card?.info?.defaultPrice
+                  ? itemCard?.card?.info?.defaultPrice / 100
+                  : itemCard.card.info.price / 100}
+              </span>
             </div>
             <span className="text-xs">{itemCard?.card?.info?.description}</span>
           </div>
           <div className="w-3/12 p-2">
             <div className="absolute">
-              <button className="p-1 px-2 mx-4 rounded-lg bg-black text-white shadow-lg">
+              <button
+                className="p-1 px-2 mx-4 rounded-lg bg-black text-white shadow-lg"
+                onClick={() => handleAddItem(itemCard)}
+              >
                 Add +
               </button>
             </div>

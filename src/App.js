@@ -22,6 +22,7 @@ import { createBrowserRouter, RouterProvider, Outlet } from "react-router-dom";
 
 // import user context
 import UserContext from "./utils/UserContext";
+import Cart from "./components/Cart";
 
 // const styleCard = {
 //   backgroundColor: "#f0f0f0"
@@ -78,6 +79,10 @@ const appRouter = createBrowserRouter([
             <Grocery />
           </Suspense>
         ),
+      },
+      {
+        path: "/cart",
+        element: <Cart />
       },
       {
         path: "/restaurants/:resId",
