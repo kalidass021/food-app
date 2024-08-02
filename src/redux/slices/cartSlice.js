@@ -1,4 +1,4 @@
-import { createSlice } from "@reduxjs/toolkit";
+import { createSlice, current } from "@reduxjs/toolkit";
 
 // Step3. Create state slice with createSlice function and add initial state
 
@@ -17,7 +17,14 @@ const cartSlice = createSlice({
             state.items.pop();
         },
         clearCart: (state, action) => {
-            state.items.length = 0;
+            console.log(current(state));
+            state.items.length = 0; // originalState = []
+            // to clear the cart state = [] won't work because,
+            // that's not modifying the original state
+
+            // In RTK either we've to mutate the existing state or return the new state
+
+            // return {items: []}; // this new object will be replaced inside originalState = {items: []}
         }
     }
 });
