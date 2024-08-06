@@ -2,8 +2,9 @@ import { render, screen } from "@testing-library/react";
 import Contact from "../Contact";
 import "@testing-library/jest-dom";
 
-// test case 1
-test("Should load contact us component", () => {
+describe("Contact Us page test case", () => {
+  // test case 1
+  test("Should load contact us component", () => {
     // render the component to JSDOM
     render(<Contact />);
 
@@ -12,11 +13,10 @@ test("Should load contact us component", () => {
 
     // assertion
     expect(heading).toBeInTheDocument();
-});
+  });
 
-
-// test case 2
-test("Should load button in the Contact commponent", () => {
+  // test case 2
+  test("Should load button in the Contact commponent", () => {
     // render the component to JSDOM
     render(<Contact />);
 
@@ -25,11 +25,10 @@ test("Should load button in the Contact commponent", () => {
 
     // assertion
     expect(button).toBeInTheDocument();
-});
+  });
 
-
-// test case 3
-test("Should load name input name inside the contact component", () => {
+  // test case 3
+  test("Should load name input name inside the contact component", () => {
     // render the component to JSDOM
     render(<Contact />);
 
@@ -38,11 +37,10 @@ test("Should load name input name inside the contact component", () => {
 
     // assertion
     expect(name).toBeInTheDocument();
-});
+  });
 
-
-// test case 4
-test("Should load 2 input boxes on the Contact component", () => {
+  // test case 4
+  test("Should load 2 input boxes on the Contact component", () => {
     // render the component JSDOM
     render(<Contact />);
 
@@ -55,4 +53,5 @@ test("Should load 2 input boxes on the Contact component", () => {
 
     // assertion
     expect(inputBoxes.length).toBe(2);
+  });
 });
