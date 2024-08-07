@@ -4,7 +4,7 @@ import "@testing-library/jest-dom";
 
 describe("Contact Us page test case", () => {
   // test case 1
-  test("Should load contact us component", () => {
+  it("Should load contact us component", () => {
     // render the component to JSDOM
     render(<Contact />);
 
@@ -16,7 +16,7 @@ describe("Contact Us page test case", () => {
   });
 
   // test case 2
-  test("Should load button in the Contact commponent", () => {
+  it("Should load button in the Contact commponent", () => {
     // render the component to JSDOM
     render(<Contact />);
 
@@ -28,7 +28,7 @@ describe("Contact Us page test case", () => {
   });
 
   // test case 3
-  test("Should load name input name inside the contact component", () => {
+  it("Should load name input name inside the contact component", () => {
     // render the component to JSDOM
     render(<Contact />);
 
@@ -40,7 +40,7 @@ describe("Contact Us page test case", () => {
   });
 
   // test case 4
-  test("Should load 2 input boxes on the Contact component", () => {
+  it("Should load 2 input boxes on the Contact component", () => {
     // render the component JSDOM
     render(<Contact />);
 
