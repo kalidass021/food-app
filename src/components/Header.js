@@ -20,7 +20,7 @@ const Header = () => {
   // also we're mentioning which portion of the store needs to be accessed
   const cartItems = useSelector((store) => store.cart.items);
 
-  console.log('data', loggedInuser);
+  // console.log('data', loggedInuser);
   return (
     // if device size is greater than sm then bg-yellow-50
     // if device size is greater than lg then bg-green-50

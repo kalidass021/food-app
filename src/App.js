@@ -18,7 +18,11 @@ import appStore from "./redux/appStore";
 // routing
 // step1 - import createBrowserRouter
 // step3 - import RouterProvider
-import { createBrowserRouter, RouterProvider, Outlet } from "react-router-dom";
+import {
+  createBrowserRouter,
+  RouterProvider,
+  Outlet
+} from "react-router-dom";
 
 // import user context
 import UserContext from "./utils/UserContext";
@@ -43,13 +47,13 @@ const AppLayout = () => {
     // Step2. Providing the redux store to application
     <Provider store={appStore}>
       {/* providing data to parent component */}
-      <UserContext.Provider value={{ loggedInuser: userName, setUserName }}>
-        <div className="app">
-          <Header />
-          {/* render the component based on the path */}
-          <Outlet />
-        </div>
-      </UserContext.Provider>
+        <UserContext.Provider value={{ loggedInuser: userName, setUserName }}>
+          <div className="app">
+            <Header />
+            {/* render the component based on the path */}
+            <Outlet />
+          </div>
+        </UserContext.Provider>
     </Provider>
   );
 };
@@ -82,7 +86,7 @@ const appRouter = createBrowserRouter([
       },
       {
         path: "/cart",
-        element: <Cart />
+        element: <Cart />,
       },
       {
         path: "/restaurants/:resId",
