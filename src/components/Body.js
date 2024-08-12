@@ -27,7 +27,9 @@ const Body = () => {
 
   const filterBtnClick = () => {
     let filteredList = restaurantList.filter((res) => res.info.avgRating > 4);
-    setRestaurantList(filteredList);
+    // setRestaurantList(filteredList);
+    setFilteredRestaurant(filteredList);
+    console.log("filteredList", filteredList);
   };
 
   useEffect(() => {
@@ -71,6 +73,7 @@ const Body = () => {
       <div className="flex">
         <div className="m-4 p-4">
           <input
+            data-testid="searchInput"
             type="text"
             className="border border-solid border-black"
             value={searchText}
@@ -100,7 +103,7 @@ const Body = () => {
             className="px-4 py-2 bg-blue-100 rounded-lg"
             onClick={filterBtnClick}
           >
-            Top rated Restaurants
+            Top Rated Restaurants
           </button>
         </div>
         <div className="m-4 p-4 flex items-center">
