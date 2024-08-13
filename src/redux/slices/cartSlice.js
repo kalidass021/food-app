@@ -17,7 +17,7 @@ const cartSlice = createSlice({
             state.items.pop();
         },
         clearCart: (state, action) => {
-            console.log(current(state));
+            // console.log(current(state));
             state.items.length = 0; // originalState = []
             // to clear the cart state = [] won't work because,
             // that's not modifying the original state

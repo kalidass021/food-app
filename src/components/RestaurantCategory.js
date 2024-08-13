@@ -5,7 +5,7 @@ const RestaurantCategory = ({ categoryData, showItems, setShowIndex }) => {
   // logic to show and hide the accodion body
   const showAccodionBody = (showItems) => {
     setShowIndex();
-    console.log('showItems', showItems);
+    // console.log('showItems', showItems);
     // showItems = !showItems;
   }
   return (

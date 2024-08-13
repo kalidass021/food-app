@@ -3,6 +3,28 @@ import Contact from "../Contact";
 import "@testing-library/jest-dom";
 
 describe("Contact Us page test case", () => {
+
+  // // executed before all the test cases (before first test case)
+  // beforeAll(() => {
+  //   console.log("Before All");
+  // });
+
+  // // executed before each test case
+  // beforeEach(() => {
+  //   console.log("Before Each");
+  // });
+
+
+  // // executed after the all the test cases
+  // afterAll(() => {
+  //   console.log("After All");
+  // });
+
+  // // executed after each test case
+  // AfterEach(() => {
+  //   console.log("After Each");
+  // })
+
   // test case 1
   it("Should load contact us component", () => {
     // render the component to JSDOM
@@ -49,7 +71,7 @@ describe("Contact Us page test case", () => {
     const inputBoxes = screen.getAllByRole("textbox");
 
     // log the JSX Element or React Element or virtual DOM Object or React Fiber node
-    console.log(inputBoxes);
+    // console.log(inputBoxes);
 
     // assertion
     expect(inputBoxes.length).toBe(2);

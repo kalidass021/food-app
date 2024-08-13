@@ -19,7 +19,7 @@ const Body = () => {
   // get online status from custom hook
   const onlineStatus = useOnlineStatus();
 
-  console.log("restaurantList", restaurantList);
+  // console.log("restaurantList", restaurantList);
 
   // console.log("Body rendered");
 
@@ -29,7 +29,7 @@ const Body = () => {
     let filteredList = restaurantList.filter((res) => res.info.avgRating > 4);
     // setRestaurantList(filteredList);
     setFilteredRestaurant(filteredList);
-    console.log("filteredList", filteredList);
+    // console.log("filteredList", filteredList);
   };
 
   useEffect(() => {
