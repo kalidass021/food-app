@@ -26,7 +26,7 @@ const Header = () => {
     // if device size is greater than lg then bg-green-50
     <div className="flex justify-between bg-pink-100 shadow-md sm:bg-yellow-50 lg:bg-green-50">
       <div className="logo-container">
-        <img className="w-32" src={LOGO_URL} />
+        <img className="w-20" src={LOGO_URL} />
       </div>
       <div className="flex items-center">
         <ul className="flex p-4 m-4">
