@@ -2,8 +2,11 @@
 import { useDispatch } from "react-redux";
 import { addItem } from "../redux/slices/cartSlice";
 import { CDN_URL } from "../utils/constants";
+import { useLocation } from "react-router-dom";
 const ItemList = ({ itemCards }) => {
   const dispatch = useDispatch();
+  const pathname = useLocation().pathname;
+
   const handleAddItem = (itemCard) => {
     // dispatch an action
     dispatch(addItem(itemCard));
@@ -15,7 +18,7 @@ const ItemList = ({ itemCards }) => {
 
       and assign this object to action (2nd argument to the reducer function)
     */
-  }
+  };
   return (
     <div>
       {itemCards.map((itemCard) => (
@@ -39,12 +42,12 @@ const ItemList = ({ itemCards }) => {
           </div>
           <div className="w-3/12 p-2">
             <div className="absolute">
-              <button
+              {pathname === '/cart' ? <></> :               <button
                 className="p-1 px-2 mx-4 rounded-lg bg-black text-white shadow-lg"
                 onClick={() => handleAddItem(itemCard)}
               >
                 Add +
-              </button>
+              </button>}
             </div>
             <img src={`${CDN_URL}${itemCard.card.info.imageId}`} />
           </div>
